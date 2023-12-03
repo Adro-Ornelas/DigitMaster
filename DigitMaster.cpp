@@ -1,23 +1,25 @@
 // DigitMaster.cpp
 #include <iostream>
+#include <cstdio>
 #include <cstdlib>
 #include "DigitMaster.h"
 
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
 
 void DigitMaster::clrscr(){
-	#ifdef WINDOWS
-		std::system("cls");
-	#else
-		std::system("clear");
-	#endif
+	system(CLEAR);
 }
 void DigitMaster::pause(){
 	std::cin.get();
 	char pause = ' ';
 	std::cout << "Presiona <Enter> para continuar...";
-	do{
+	// do{
 		pause = std::cin.get();
-	}while(pause != '\n');
+	//}while(pause != '\n');
 }
 
 int DigitMaster::BaseYADec(int numY, int baseY){
