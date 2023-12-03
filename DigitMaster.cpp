@@ -17,9 +17,9 @@ void DigitMaster::pause(){
 	std::cin.get();
 	char pause = ' ';
 	std::cout << "Presiona <Enter> para continuar...";
-	// do{
+	do{
 		pause = std::cin.get();
-	//}while(pause != '\n');
+	}while(pause != '\n');
 }
 
 int DigitMaster::BaseYADec(int numY, int baseY){
@@ -53,16 +53,16 @@ void DigitMaster::MenuConversio(){
 					 "1. Decimal a Base X\n"
 					 "2. Base X a DEcimal\n"
 					 "3. Atrás\n";
-					 "0. Salir\n";
 		std::cout << "Selecciona una opción: ";
 		std::cin >> option;
 		
 		switch(option){
-			case 0:
+			case 3:
 				break;
 			case 1: 
-				std::cout << "Introduce el número decimal: ";
+				std::cout << "Introduce un número decimal: ";
 				std::cin >> dec;
+				std::cout << "Introduce la base a convertirlo: ";
 				do{
 					std::cin >> baseY;
 					if(baseY < 2 || baseY > 16)
@@ -77,13 +77,21 @@ void DigitMaster::MenuConversio(){
 
 			case 2:
 				std::cout << "Introduce el número en baseY y su base: ";
-				std::cin >> numY  >> baseY;
+				std::cin >> numY;
+				do{
+					std::cin >> baseY;
+					if(baseY < 2 || baseY > 16)
+						std::cout << "Base no admitida";
+				} while(baseY < 2 || baseY > 16);
+
+
 				dec = BaseYADec(numY, baseY);
 				std::cout << "El decimal es: " << dec
 						  << std::endl;
+				pause();
 			break;
 		}
-	} while(option != 0 && option != EOF);
+	} while(option != 0 && option != 3);
 }
 
 void DigitMaster::MenuPrincipal(){
